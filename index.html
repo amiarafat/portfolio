@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hossain Arafat - Mobile Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --text: #f1f5f9;
+            --text-muted: #cbd5e1;
+            --border: #334155;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            z-index: -2;
+        }
+
+        .glow-1 {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        .glow-2 {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 1.5rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-light) 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* Profile Image */
+        .profile-image-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 0 auto;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 60px rgba(59, 130, 246, 0.5);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 60px rgba(59, 130, 246, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 100px rgba(59, 130, 246, 0.8), 0 0 120px rgba(139, 92, 246, 0.4);
+            }
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .decorator-1 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent);
+            border-radius: 50%;
+            top: -30px;
+            right: -30px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .decorator-2 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
+            border-radius: 50%;
+            bottom: -20px;
+            left: -20px;
+            animation: pulse 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-light) 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #8b5cf6);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            padding: 2rem;
+            color: white;
+            height: 150px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .project-header h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-links a {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: 1px solid var(--accent);
+        }
+
+        .project-links a:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Experience */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -17px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            width: 20px;
+            height: 20px;
+            left: -21px;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+        }
+
+        .timeline-item li {
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .education-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .education-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .degree {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .university {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .grad-year {
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image-container {
+                width: 280px;
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo"><i class="fas fa-code"></i> ARAFAT</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Mobile Engineer & Flutter Expert</h1>
+                    <p class="subtitle">Building Production-Grade Apps for 200K+ Users</p>
+                    <p>Specializing in Flutter, Android, and scalable cross-platform solutions. 10+ years of experience crafting high-performance mobile applications with Firebase, REST APIs, and modern architecture.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary">
+                            <i class="fas fa-arrow-right"></i> View My Work
+                        </button>
+                        <button class="btn-secondary">
+                            <i class="fas fa-download"></i> Download CV
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-image-container">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/350x350?text=Hossain+Arafat" alt="Hossain Arafat">
+                    </div>
+                    <div class="decorator-1"></div>
+                    <div class="decorator-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">10+</div>
+                <div class="stat-label"><i class="fas fa-briefcase"></i> Years Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6+</div>
+                <div class="stat-label"><i class="fas fa-mobile-alt"></i> Apps Published</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">200K+</div>
+                <div class="stat-label"><i class="fas fa-users"></i> Active Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label"><i class="fas fa-graduation-cap"></i> Team Mentored</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-sparkles"></i> Core Competencies</h2>
+                <p>Full-stack mobile expertise with modern frameworks and cloud platforms</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile Development</h3>
+                    <p>Flutter (4+ years), Android SDK, iOS deployment, Cross-platform solutions</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-plug"></i></div>
+                    <h3>Backend & APIs</h3>
+                    <p>Laravel, REST APIs, Node.js, RESTful Integration, Microservices</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud & DevOps</h3>
+                    <p>Firebase, Google Cloud, Docker, CI/CD, Database Management</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>State Management</h3>
+                    <p>GetX, Bloc, Riverpod, Stream Management, Real-time Systems</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-building"></i></div>
+                    <h3>Architecture</h3>
+                    <p>Clean Architecture, SOLID Principles, Design Patterns, Performance</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Languages & Tools</h3>
+                    <p>Dart, Java, PHP, Python, SQL, Git, Agile/Scrum</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-rocket"></i> Featured Projects</h2>
+                <p>Production-grade applications serving real users globally</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-briefcase"></i> Niyog - Job Listings</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Cross-platform job listing platform connecting 100K+ seekers with opportunities. Features custom filters, direct application, and full ATS system.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-android"></i> Play Store</a>
+                            <a href="#"><i class="fas fa-apple"></i> App Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-car"></i> MUV - Ride Sharing</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Urban mobility platform with 100K+ users. Real-time tracking handling 10K+ concurrent rides, secure payments, and driver integration.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-android"></i> Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-users"></i> MUV HRT - Employee</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">HR tracking solution managing 2000+ employees. Real-time task tracking, GPS location, schedule adherence, and field staff management.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-android"></i> Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-door-open"></i> Frontliner - Visitor</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Smart visitor management replacing manual logbooks. Secure digital platform for registration, check-in, and access tracking.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-info-circle"></i> Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-map"></i> Grid - Fleet Mgmt</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Comprehensive fleet management solution for transportation and logistics with real-time tracking and optimization.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-info-circle"></i> Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-video"></i> AI Video Interview</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">Flutter + Firebase app with AI integration for automated video-based answer evaluation and candidate assessment.</p>
+                        <div class="project-links">
+                            <a href="#"><i class="fas fa-info-circle"></i> Tech Stack</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Work Experience</h2>
+                <p>Building impactful products at leading companies</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-title">Software Engineer</div>
+                    <div class="company"><i class="fas fa-building"></i> MUV Asia / Patrons Venture Ltd.</div>
+                    <div class="date"><i class="fas fa-calendar"></i> February 2017 - Present (7+ years)</div>
+                    <ul>
+                        <li>Led development of 6 production apps serving 200K+ users across Android/iOS with 4.5+ star ratings</li>
+                        <li>Architected real-time tracking system handling 10K+ concurrent rides using Firebase and Laravel</li>
+                        <li>Reduced app crash rate from 55% to 12% through proactive monitoring and optimization</li>
+                        <li>Improved API response times by 20%-40% through database optimization</li>
+                        <li>Designed modular Flutter architecture using Clean Architecture, improving code reusability by 50%</li>
+                        <li>Reduced app load time from 12 to 5 seconds through optimization strategies</li>
+                        <li>Mentored 4+ junior developers on best practices and mobile architecture</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-title">Software Engineer</div>
+                    <div class="company"><i class="fas fa-building"></i> RDF Payment Technologies Ltd.</div>
+                    <div class="date"><i class="fas fa-calendar"></i> 2015 - 2017</div>
+                    <ul>
+                        <li>Built and deployed mobile recharge and order management apps with secure banking APIs</li>
+                        <li>Implemented authentication, transaction history, and notification systems improving speed by 20%</li>
+                        <li>Collaborated on backend API design and real-time Firebase data synchronization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-book"></i> Education</h2>
+                <p>Advanced studies in Computer Science and Information Technology</p>
+            </div>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="degree">Master of Science</div>
+                    <div class="university">Computer Science</div>
+                    <div class="university" style="font-size: 0.95rem; color: var(--accent); margin-top: 0.5rem;">Jahangirnagar University, Dhaka</div>
+                    <div class="grad-year"><i class="fas fa-calendar-alt"></i> December 2017</div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="degree">Bachelor of Science</div>
+                    <div class="university">Information & Communication Technology</div>
+                    <div class="university" style="font-size: 0.95rem; color: var(--accent); margin-top: 0.5rem;">Mawlana Bhashani S&T University, Tangail</div>
+                    <div class="grad-year"><i class="fas fa-calendar-alt"></i> March 2016</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-section">
+                <h3><i class="fas fa-handshake"></i> Let's Build Something Amazing</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">Get in touch for collaborations, opportunities, or just a friendly chat</p>
+                <div class="social-links">
+                    <a href="mailto:arafat.ict.mbstu@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/hossainarafat" target="_blank" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/amiarafat" target="_blank" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://stackoverflow.com/users/4252662/arafat" target="_blank" class="social-link" title="Stack Overflow">
+                        <i class="fab fa-stack-overflow"></i>
+                    </a>
+                    <a href="https://medium.com/@arafat.ict.mbstu" target="_blank" class="social-link" title="Medium">
+                        <i class="fab fa-medium"></i>
+                    </a>
+                </div>
+                <p style="color: var(--text-muted);"><i class="fas fa-phone"></i> +880 1521 210620 | <i class="fas fa-envelope"></i> arafat.ict.mbstu@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><i class="fas fa-copyright"></i> 2024 Hossain Arafat. All rights reserved. | <i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+        </div>
+    </footer>
+</body>
+</html>
